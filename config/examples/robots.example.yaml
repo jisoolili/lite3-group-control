@@ -1,0 +1,12 @@
+robots:
+  - robot_id: Robot_01
+    ip: 192.168.1.120
+    target_port: 43893
+    local_state_port: 43897
+
+  - robot_id: Robot_02
+    ip: 192.168.1.121
+    target_port: 43893
+    local_state_port: 43898
+
+  # Continue the same pattern through Robot_10.

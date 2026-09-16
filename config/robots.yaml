@@ -1,0 +1,11 @@
+robots:
+  - robot_id: Robot_01
+    ip: 192.168.1.120
+    target_port: 43893
+    local_state_port: 43897
+
+  # Placeholder only. Replace with the real second robot address before any real run.
+  - robot_id: Robot_02
+    ip: 0.0.0.0
+    target_port: 43893
+    local_state_port: 43898
