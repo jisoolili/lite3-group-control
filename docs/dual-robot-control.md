@@ -1,33 +1,33 @@
-# Dual Robot Control
+# 双机器人控制
 
-The current package supports dry-run validation for two logical robots.
+当前包支持两个逻辑机器人的 dry-run 验证。
 
-## Robot IDs
+## Robot ID
 
-Use logical IDs:
+统一使用逻辑 ID：
 
 ```text
 Robot_01
 Robot_02
 ```
 
-The Robot ID is not the IP address. IP addresses belong in robot configuration.
+Robot ID 不是 IP 地址。IP 地址只属于机器人配置。
 
-## Dry-Run Examples
+## 空跑示例
 
-Same action on both robots:
+两台机器人执行同一动作：
 
 ```bash
 ros2 run group_control dual_robot_demo --action squat --dry-run
 ```
 
-One robot:
+单机器人：
 
 ```bash
 ros2 run group_control dual_robot_demo --robot Robot_01 --action squat_low --dry-run
 ```
 
-Different actions:
+不同动作：
 
 ```bash
 ros2 run group_control dual_robot_demo \
@@ -36,7 +36,7 @@ ros2 run group_control dual_robot_demo \
   --dry-run
 ```
 
-Delayed execution:
+延迟执行：
 
 ```bash
 ros2 run group_control dual_robot_demo \
@@ -46,15 +46,15 @@ ros2 run group_control dual_robot_demo \
   --dry-run
 ```
 
-Sequence:
+连续序列：
 
 ```bash
 ros2 run group_control dual_robot_demo --sequence --dry-run
 ```
 
-## API Direction
+## API 方向
 
-The intended high-level control shape is:
+未来高层控制接口应接近：
 
 ```cpp
 group.execute(
@@ -62,7 +62,7 @@ group.execute(
     action = "squat");
 ```
 
-And for scheduled sequences:
+定时序列应接近：
 
 ```cpp
 sequence = {
@@ -71,4 +71,4 @@ sequence = {
 };
 ```
 
-Real dual-robot execution is not enabled in the current demo.
+当前 demo 尚未开放真实双机器人执行。

@@ -1,6 +1,6 @@
-# Architecture
+# 系统架构
 
-The project separates robot identity, action definition, execution timing, and transport.
+项目需要把机器人身份、动作定义、执行时间和底层通信分离，避免后续扩展到 10 台机器人时把 IP、动作和时间线混在一起。
 
 ```text
 Show / Timeline
@@ -27,30 +27,30 @@ Transport
 Lite3
 ```
 
-## Layers
+## 分层职责
 
-`RobotManager` owns robot records. It maps a logical Robot ID to robot configuration such as IP address, target port, and local RobotState port.
+`RobotManager` 负责机器人记录。它把逻辑 Robot ID 映射到机器人配置，例如 IP、目标端口和本地 RobotState 端口。
 
-`ActionManager` owns named actions. An action should be reusable across robots, for example `Robot_01 + squat_low` and `Robot_07 + squat_low` should use the same action definition.
+`ActionManager` 负责动作注册和动作分发。动作必须可复用，例如 `Robot_01 + squat_low` 和 `Robot_07 + squat_low` 应该使用同一个动作定义。
 
-`GroupController` dispatches actions to one or more robots. It supports synchronized dispatch, different actions, delayed dispatch, and sequence dispatch.
+`GroupController` 负责把动作调度到一个或多个机器人。当前支持同步分发、不同动作分发、延迟分发和序列分发。
 
-`SequenceManager` is planned as the show timeline layer. It should define the order, timing, repetition, and speed of stage actions without knowing robot IP addresses.
+`SequenceManager` 是规划中的演出时间线层。它应该描述动作顺序、时间、重复次数和速度，不应该知道机器人 IP。
 
-`Transport` is planned as the real communication layer. It should isolate UDP/Sender/Receiver details from high-level choreography.
+`Transport` 是规划中的真实通信层。它会把 UDP、Sender、Receiver 等底层细节从高层编舞逻辑中隔离出来。
 
-## Current State
+## 当前状态
 
-Implemented:
+已实现：
 
 - `RobotManager`
 - `ActionManager`
 - `GroupController`
 - dry-run `dual_robot_demo`
 
-Planned:
+规划中：
 
-- first-class `SequenceManager`
-- real Lite3 transport adapter
-- multi-robot state monitoring
-- parameterized Wave action
+- 独立 `SequenceManager`
+- 真实 Lite3 Transport 适配器
+- 多机器人状态监控
+- 参数化 Wave 声浪动作

@@ -1,10 +1,10 @@
-# Single Robot Actions
+# 单机器人动作
 
-Single-robot action development currently uses the companion `transfer` package and `lite3_stand_demo` executable.
+当前单机器人动作开发使用配套 `transfer` 包和 `lite3_stand_demo` 可执行程序。
 
-## Implemented Actions
+## 已实现动作
 
-Implemented in the current single-robot action demo:
+当前单机器人动作 demo 已实现：
 
 - `stand`
 - `squat-1-3`
@@ -12,14 +12,14 @@ Implemented in the current single-robot action demo:
 - `squat-full`
 - `squat-sequence`
 
-Validated on Robot A previously:
+Robot A 已经验证过：
 
 - `stand`
 - `squat-1-3`
 - `squat-2-3`
 - `squat-full`
 
-## Current Parameters
+## 当前参数
 
 ```text
 STAND:
@@ -46,7 +46,7 @@ SQUAT_FULL:
 target height ~= 0.126891 m
 ```
 
-Control parameters:
+控制参数：
 
 ```text
 kp = 60
@@ -64,11 +64,11 @@ ros2 run transfer lite3_stand_demo --dry-run --action squat-2-3
 ros2 run transfer lite3_stand_demo --dry-run --action squat-full
 ```
 
-## REAL ROBOT
+## 真实机器人
 
-Read `docs/safety.md` before any real command.
+执行真实机器人动作前必须先阅读 `docs/safety.md`。
 
-Example Robot A wired stand command:
+Robot A 有线 stand 示例命令：
 
 ```bash
 ros2 run transfer lite3_stand_demo \
@@ -78,9 +78,9 @@ ros2 run transfer lite3_stand_demo \
   --robot-port 43893
 ```
 
-Run one action at a time. If RobotState timeout appears, stop and preserve logs. Do not loosen watchdogs or change gains as a first response.
+一次只执行一个动作。如果出现 RobotState timeout，立即停止后续动作并保留日志。不要第一时间通过放宽 watchdog 或修改增益来掩盖通信问题。
 
-## Planned Actions
+## 规划动作
 
 - `Height`
 - `FastSquat`

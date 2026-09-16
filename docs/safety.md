@@ -1,50 +1,50 @@
-# Safety
+# 安全说明
 
-Real robot execution must be deliberate and staged.
+真实机器人执行必须谨慎、逐步推进。
 
-## Before Real Motion
+## 真实动作前检查
 
-- Confirm the area around the robot is clear.
-- Confirm the floor is stable and non-slippery.
-- Confirm emergency stop and remote control are available.
-- Confirm only the intended robot is connected.
-- Confirm no group-control real run is active.
-- Confirm RobotState is stable before sending commands.
-- Run dry-run first.
+- 确认机器人周围无人员。
+- 确认地面稳定、不打滑。
+- 确认急停和遥控器可用。
+- 确认只连接目标机器人。
+- 确认没有真实 group-control 任务在运行。
+- 确认 RobotState 稳定后再发送命令。
+- 真实动作前必须先 dry-run。
 
-## Development Order
+## 开发顺序
 
-Use this order:
+建议顺序：
 
 ```text
 dry-run
-single robot
-single robot stability check
-dual robot dry-run
-dual robot real validation
-larger group dry-run
-larger group real validation
+单机器人
+单机器人稳定性检查
+双机器人 dry-run
+双机器人真实验证
+更大规模群组 dry-run
+更大规模群组真实验证
 ```
 
-## Robot Isolation
+## 机器人隔离
 
-Validate Robot_01 and Robot_02 independently before any real group control. A single robot going offline must not create unsafe behavior for the rest of the group.
+任何真实群控前，先分别验证 `Robot_01` 和 `Robot_02`。单台机器人离线不能造成其他机器人进入不安全状态。
 
-## Network Abnormality
+## 网络异常处理
 
-If RobotState timeout, packet loss, duplicated packets, or 100 ms class gaps appear:
+如果出现 RobotState timeout、丢包、重复包或 100 ms 级 gap：
 
-- stop further real actions
-- preserve logs
-- verify wired link
-- verify `jy_exe`
-- verify configuration
-- do not change watchdogs, gains, or control cycle as the first response
+- 停止后续真实动作
+- 保留日志
+- 检查有线链路
+- 检查 `jy_exe`
+- 检查配置
+- 不要第一时间修改 watchdog、增益或控制周期
 
-## Prohibited During Baseline Validation
+## 基线验证阶段禁止
 
-- real dual-robot control without single-robot validation
-- unverified action parameters
-- changing `kp`, `kd`, control cycle, or watchdog to hide a communication issue
-- running real actions around people
-- committing passwords, tokens, SSH keys, or private robot credentials
+- 未完成单机验证就执行真实双机器人群控
+- 使用未经验证的动作参数
+- 通过修改 `kp`、`kd`、控制周期或 watchdog 掩盖通信问题
+- 在人员靠近时执行真实动作
+- 提交密码、token、SSH key 或机器人私有凭证

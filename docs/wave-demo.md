@@ -1,14 +1,14 @@
-# Wave Demo
+# Wave 声浪演示
 
-`Wave` is the planned stage "sound wave" action.
+`Wave` 是规划中的舞台“声浪”动作。
 
-The single-robot motion idea is:
+单机器人基础动作概念：
 
 ```text
 H2 -> H0 -> H4 -> H2
 ```
 
-The multi-robot choreography should be parameterized:
+多机器人编舞应支持参数化：
 
 ```text
 Wave(
@@ -20,14 +20,14 @@ Wave(
 )
 ```
 
-## Design Principles
+## 设计原则
 
-- Wave must not be hard-coded for only two robots.
-- Robot timing should be defined by sequence/timeline data.
-- Each robot uses the same reusable action definition.
-- Per-robot delay creates the wave shape.
+- Wave 不能写死为只支持两台机器人。
+- 机器人启动时间由 sequence/timeline 数据描述。
+- 每台机器人复用同一个动作定义。
+- 通过每台机器人的延迟形成声浪效果。
 
-## Example Timeline
+## 时间线示例
 
 ```text
 Robot_01 wave start 0.00s
@@ -37,4 +37,4 @@ Robot_03 wave start 0.50s
 Robot_10 wave start 2.25s
 ```
 
-Current status: planned. The dry-run sequence infrastructure exists, but real Wave action execution is not implemented yet.
+当前状态：规划中。dry-run 序列调度基础已经存在，但真实 Wave 动作尚未实现。

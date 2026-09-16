@@ -1,5 +1,5 @@
-# Scripts
+# 脚本目录
 
-Place local helper scripts here when they are reusable and safe to share.
+这里用于放置可复用、可共享、不会造成真实机器人风险的辅助脚本。
 
-Do not commit local passwords, SSH keys, robot-private credentials, or one-off logs.
+不要提交本地密码、SSH key、机器人私有凭证或一次性运行日志。

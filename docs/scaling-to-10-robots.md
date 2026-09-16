@@ -1,31 +1,31 @@
-# Scaling To 10 Robots
+# 扩展到 10 台机器人
 
-Current target:
+当前目标：
 
 ```text
 2 robots
 ```
 
-Long-term target:
+长期目标：
 
 ```text
 10 robots
 ```
 
-## Separation Rules
+## 分离原则
 
-Keep these concepts separate:
+必须把以下概念分离：
 
 - Robot ID
 - Action
 - Execution Time
 - Transport
 
-`GroupController` should not depend on concrete IP addresses. It should receive robot IDs and actions, then use lower layers to resolve robot configuration and transport.
+`GroupController` 不应该依赖具体 IP。它接收 Robot ID 和动作，再由下层解析机器人配置和通信方式。
 
-## Robot IDs
+## Robot ID
 
-Use stable logical IDs:
+使用稳定逻辑 ID：
 
 ```text
 Robot_01
@@ -40,27 +40,27 @@ Robot_09
 Robot_10
 ```
 
-## Transport Expectations
+## Transport 要求
 
-Each robot should have independent:
+每台机器人应独立维护：
 
-- target IP
-- target command port
-- local RobotState port
-- health state
-- timeout state
+- 目标 IP
+- 目标控制端口
+- 本地 RobotState 端口
+- 健康状态
+- 超时状态
 
-One offline robot should not block safe handling of the other robots.
+单台机器人离线不应该影响其他机器人安全处理。
 
-## Scaling Steps
+## 扩展步骤
 
-1. Validate Robot_01 single-robot actions.
-2. Validate Robot_02 single-robot actions.
-3. Validate Robot_01 + Robot_02 dry-run timeline.
-4. Add real transport behind the same group API.
-5. Validate two-robot real synchronized action.
-6. Add Robot_03 to Robot_05 as configuration-only expansion.
-7. Add Robot_06 to Robot_10.
-8. Validate Wave timing with dry-run logs.
-9. Validate real Wave at conservative speed.
-10. Record per-robot stability and timing.
+1. 验证 `Robot_01` 单机器人动作。
+2. 验证 `Robot_02` 单机器人动作。
+3. 验证 `Robot_01 + Robot_02` dry-run 时间线。
+4. 在同一组控 API 后接入真实 Transport。
+5. 验证双机器人真实同步动作。
+6. 以配置方式加入 `Robot_03` 到 `Robot_05`。
+7. 以配置方式加入 `Robot_06` 到 `Robot_10`。
+8. 用 dry-run 日志验证 Wave 时序。
+9. 以保守速度验证真实 Wave。
+10. 记录每台机器人的稳定性和时序结果。

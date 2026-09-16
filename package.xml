@@ -3,7 +3,7 @@
 <package format="3">
   <name>group_control</name>
   <version>0.1.0</version>
-  <description>Lite3 multi-robot group control and stage action coordination.</description>
+  <description>Lite3 多机器人群控与舞台动作协同系统。</description>
   <maintainer email="charlie@example.com">charlie</maintainer>
   <license>Apache-2.0</license>
 
