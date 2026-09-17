@@ -23,6 +23,9 @@ class Robot {
   const std::string& ip() const;
   std::uint16_t targetPort() const;
   std::uint16_t localStatePort() const;
+  const std::string& localIp() const;
+  const std::string& bindInterface() const;
+  std::uint16_t statePort() const;
   const std::string& transport() const;
   const std::string& network() const;
   const std::string& actionInterface() const;

@@ -11,7 +11,7 @@ DeepRobotics Lite3 多机器人群控与演出动作控制系统。
 - `RobotManager`：机器人注册、查询和移除。
 - `ActionManager`：动作注册、查询和分发。
 - `GroupController`：单机器人、同步群组、延迟、不同动作、连续序列调度。
-- `dual_robot_demo`：双机器人 dry-run 演示程序。
+- `dual_robot_demo`：Ubuntu 开发电脑上的双机器人群控入口，支持 dry-run 和显式确认后的真实双狗执行。
 - `test_robot_manager`：机器人、动作、群控抽象的基础测试程序。
 
 已验证：
@@ -20,11 +20,11 @@ DeepRobotics Lite3 多机器人群控与演出动作控制系统。
 - 配套 `transfer` 包中的单机器人 `stand`、`squat-1-3`、`squat-2-3`、`squat-full` dry-run。
 - 配套 `transfer` 包中的单机器人 `fast-squat` dry-run 与 Robot A 有线真实验证。
 - 配套 `transfer` 包中的 `sway`、`pitch`、`leg-lift`、`rotate` dry-run。
-- 当前 `group_control` 包仅完成 dry-run 级别验证。
+- Robot A / Robot B 同 IP 双网口 socket 出口绑定验证：Robot_A 走 `enx00e04c36bbfd`，Robot_B 走 `enp2s0`。
+- `group_control` 包已接入双狗真实执行入口；真实执行仍必须显式传入 `--real-run-confirm`。
 
 规划中：
 
-- 真实多机器人 Transport 接入。
 - 独立 `SequenceManager` 时间线层。
 - 支持 2 到 10 台机器人的参数化 `Wave` 声浪动作。
 - 舞台动作库：`Height`、`FastSquat`、`Sway`、`Pitch`、`LegLift`、`Rotate`。
@@ -85,9 +85,9 @@ colcon build --packages-select group_control
 source install/setup.bash
 ```
 
-## 空跑演示
+## 群控演示
 
-当前演示程序只允许 dry-run：
+空跑：
 
 ```bash
 ros2 run group_control dual_robot_demo --dry-run
@@ -97,7 +97,17 @@ ros2 run group_control dual_robot_demo --robot-a-action squat_low --robot-b-acti
 ros2 run group_control dual_robot_demo --sequence --dry-run
 ```
 
-真实机器人命令不放在 README 顶部。执行真实动作前先阅读 [docs/safety.md](docs/safety.md)，再参考 [docs/single-robot-actions.md](docs/single-robot-actions.md)。
+双狗真实执行入口只在显式确认时启用，且当前白名单仅包含 `stand`、`squat_low`、`squat_mid`、`squat_high`、`fast_squat`：
+
+```bash
+ros2 run group_control dual_robot_demo \
+  --robot-a-action stand \
+  --robot-b-action stand \
+  --delay 0 \
+  --real-run-confirm
+```
+
+执行真实动作前先阅读 [docs/safety.md](docs/safety.md)，再参考 [docs/dual-robot-control.md](docs/dual-robot-control.md)。
 
 ## SDK 要求
 
@@ -117,6 +127,7 @@ ros2 run group_control dual_robot_demo --sequence --dry-run
 - [单机器人动作](docs/single-robot-actions.md)
 - [单机连接与动作验证](docs/single-robot-validation.md)
 - [双机器人控制](docs/dual-robot-control.md)
+- [双机器人测试记录](docs/dual-robot-test-report.md)
 - [Wave 声浪演示](docs/wave-demo.md)
 - [扩展到 10 台机器人](docs/scaling-to-10-robots.md)
 - [安全说明](docs/safety.md)

@@ -28,10 +28,12 @@ int main() {
   using group_control::RobotConfig;
   using group_control::RobotManager;
 
-  RobotConfig robot_a{"Robot_A", "192.168.1.120", 43893, 43897, "udp",
-                      "wired", "transfer/lite3_stand_demo", true};
-  RobotConfig robot_b{"Robot_B", "0.0.0.0", 43893, 43898, "udp", "pending",
-                      "transfer/lite3_stand_demo", false};
+  RobotConfig robot_a{"Robot_A", "192.168.1.120", 43893, 43897,
+                      "192.168.123.99", "enx00e04c36bbfd", 43897,
+                      "udp", "wired", "transfer/lite3_stand_demo", true};
+  RobotConfig robot_b{"Robot_B", "192.168.1.120", 43893, 43897,
+                      "192.168.1.99", "enp2s0", 43897,
+                      "udp", "wired", "transfer/lite3_stand_demo", true};
 
   RobotManager robot_manager;
   Check(robot_manager.addRobot(robot_a), "Robot_A create");
@@ -51,13 +53,25 @@ int main() {
   Check(found_a != nullptr && found_a->targetPort() == 43893, "Robot_A target port");
   Check(found_a != nullptr && found_a->localStatePort() == 43897,
         "Robot_A local state port");
+  Check(found_a != nullptr && found_a->localIp() == "192.168.123.99",
+        "Robot_A local IP");
+  Check(found_a != nullptr && found_a->bindInterface() == "enx00e04c36bbfd",
+        "Robot_A bind interface");
+  Check(found_a != nullptr && found_a->statePort() == 43897,
+        "Robot_A state port");
+  Check(found_b != nullptr && found_b->localIp() == "192.168.1.99",
+        "Robot_B local IP");
+  Check(found_b != nullptr && found_b->bindInterface() == "enp2s0",
+        "Robot_B bind interface");
+  Check(found_b != nullptr && found_b->statePort() == 43897,
+        "Robot_B state port");
   Check(found_a != nullptr && found_a->transport() == "udp", "Robot_A transport");
   Check(found_a != nullptr && found_a->network() == "wired", "Robot_A network");
   Check(found_a != nullptr && found_a->actionInterface() == "transfer/lite3_stand_demo",
         "Robot_A action interface");
   Check(found_a != nullptr && found_a->actionVerified(), "Robot_A action verified flag");
-  Check(found_b != nullptr && !found_b->actionVerified(),
-        "Robot_B action pending flag");
+  Check(found_b != nullptr && found_b->actionVerified(),
+        "Robot_B action verified flag");
 
   Check(!robot_manager.addRobot(robot_a), "Duplicate Robot_A rejected");
   Check(robot_manager.getAllRobots().size() == 2U, "get all robots");

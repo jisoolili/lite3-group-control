@@ -3,15 +3,21 @@ robots:
     ip: 192.168.1.120
     target_port: 43893
     local_state_port: 43897
+    local_ip: 192.168.123.99
+    bind_interface: enx00e04c36bbfd
+    state_port: 43897
     transport: udp
     network: wired
     action_interface: transfer/lite3_stand_demo
     action_verified: true
 
   - robot_id: Robot_B
-    ip: 192.168.1.121
+    ip: 192.168.1.120
     target_port: 43893
-    local_state_port: 43898
+    local_state_port: 43897
+    local_ip: 192.168.1.99
+    bind_interface: enp2s0
+    state_port: 43897
     transport: udp
     network: pending
     action_interface: transfer/lite3_stand_demo
