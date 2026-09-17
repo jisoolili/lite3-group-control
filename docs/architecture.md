@@ -18,7 +18,7 @@ ActionManager
 RobotManager
       |
       v
-Robot_01 ... Robot_10
+Robot_A / Robot_B / future Robot_03 ... Robot_10
       |
       v
 Transport
@@ -31,7 +31,7 @@ Lite3
 
 `RobotManager` 负责机器人记录。它把逻辑 Robot ID 映射到机器人配置，例如 IP、目标端口和本地 RobotState 端口。
 
-`ActionManager` 负责动作注册和动作分发。动作必须可复用，例如 `Robot_01 + squat_low` 和 `Robot_07 + squat_low` 应该使用同一个动作定义。
+`ActionManager` 负责动作注册和动作分发。动作必须可复用，例如 `Robot_A + squat_low` 和后续扩展机器人使用的 `squat_low` 应该使用同一个动作定义。
 
 `GroupController` 负责把动作调度到一个或多个机器人。当前支持同步分发、不同动作分发、延迟分发和序列分发。
 

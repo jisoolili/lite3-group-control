@@ -21,7 +21,7 @@ struct Options {
 void PrintUsage(const char* executable) {
   std::cout
       << "Usage:\n"
-      << executable << " --robot Robot_01 --action squat_low --dry-run\n"
+      << executable << " --robot Robot_A --action squat_low --dry-run\n"
       << executable << " --action squat --dry-run\n"
       << executable
       << " --robot-a-action squat_low --robot-b-action squat_high --dry-run\n"
@@ -90,8 +90,12 @@ int main(int argc, char** argv) {
   }
 
   RobotManager robot_manager;
-  robot_manager.addRobot(RobotConfig{"Robot_01", "192.168.1.120", 43893, 43897});
-  robot_manager.addRobot(RobotConfig{"Robot_02", "0.0.0.0", 43893, 43898});
+  robot_manager.addRobot(RobotConfig{"Robot_A", "192.168.1.120", 43893, 43897,
+                                      "udp", "wired", "transfer/lite3_stand_demo",
+                                      true});
+  robot_manager.addRobot(RobotConfig{"Robot_B", "0.0.0.0", 43893, 43898,
+                                      "udp", "pending", "transfer/lite3_stand_demo",
+                                      false});
 
   ActionManager action_manager = ActionManager::createDefaultDryRunManager();
   GroupController controller(robot_manager, action_manager);
@@ -102,10 +106,10 @@ int main(int argc, char** argv) {
 
   if (options.sequence) {
     controller.runSequence({
-        ActionCommand{"Robot_01", "squat_low", 0.00},
-        ActionCommand{"Robot_02", "squat_low", 0.25},
-        ActionCommand{"Robot_01", "squat_high", 0.50},
-        ActionCommand{"Robot_02", "squat_high", 0.75},
+        ActionCommand{"Robot_A", "squat_low", 0.00},
+        ActionCommand{"Robot_B", "squat_low", 0.25},
+        ActionCommand{"Robot_A", "squat_high", 0.50},
+        ActionCommand{"Robot_B", "squat_high", 0.75},
     });
     return 0;
   }
@@ -121,12 +125,12 @@ int main(int argc, char** argv) {
     const std::string action_b =
         options.robot_b_action.empty() ? options.action : options.robot_b_action;
     controller.runDifferentActions({
-        ActionCommand{"Robot_01", action_a, 0.0},
-        ActionCommand{"Robot_02", action_b, options.delay},
+        ActionCommand{"Robot_A", action_a, 0.0},
+        ActionCommand{"Robot_B", action_b, options.delay},
     });
     return 0;
   }
 
-  controller.runGroup({"Robot_01", "Robot_02"}, options.action);
+  controller.runGroup({"Robot_A", "Robot_B"}, options.action);
   return 0;
 }

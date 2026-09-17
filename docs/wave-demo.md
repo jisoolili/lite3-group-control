@@ -38,8 +38,8 @@ Wave(
 ## 时间线示例
 
 ```text
-Robot_01 wave start 0.00s
-Robot_02 wave start 0.25s
+Robot_A wave start 0.00s
+Robot_B wave start 0.25s
 Robot_03 wave start 0.50s
 ...
 Robot_10 wave start 2.25s

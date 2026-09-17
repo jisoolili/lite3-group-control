@@ -1,12 +1,20 @@
 robots:
-  - robot_id: Robot_01
+  - robot_id: Robot_A
     ip: 192.168.1.120
     target_port: 43893
     local_state_port: 43897
+    transport: udp
+    network: wired
+    action_interface: transfer/lite3_stand_demo
+    action_verified: true
 
-  - robot_id: Robot_02
+  - robot_id: Robot_B
     ip: 192.168.1.121
     target_port: 43893
     local_state_port: 43898
+    transport: udp
+    network: pending
+    action_interface: transfer/lite3_stand_demo
+    action_verified: false
 
   # Continue the same pattern through Robot_10.

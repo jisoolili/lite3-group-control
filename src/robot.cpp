@@ -12,6 +12,16 @@ std::uint16_t Robot::targetPort() const { return config_.target_port; }
 
 std::uint16_t Robot::localStatePort() const { return config_.local_state_port; }
 
+const std::string& Robot::transport() const { return config_.transport; }
+
+const std::string& Robot::network() const { return config_.network; }
+
+const std::string& Robot::actionInterface() const {
+  return config_.action_interface;
+}
+
+bool Robot::actionVerified() const { return config_.action_verified; }
+
 ConnectionState Robot::connectionState() const { return connection_state_; }
 
 std::chrono::steady_clock::time_point Robot::lastStateTime() const {

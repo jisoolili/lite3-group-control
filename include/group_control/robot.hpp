@@ -23,6 +23,10 @@ class Robot {
   const std::string& ip() const;
   std::uint16_t targetPort() const;
   std::uint16_t localStatePort() const;
+  const std::string& transport() const;
+  const std::string& network() const;
+  const std::string& actionInterface() const;
+  bool actionVerified() const;
   ConnectionState connectionState() const;
   std::chrono::steady_clock::time_point lastStateTime() const;
 

@@ -7,8 +7,8 @@
 统一使用逻辑 ID：
 
 ```text
-Robot_01
-Robot_02
+Robot_A
+Robot_B
 ```
 
 Robot ID 不是 IP 地址。IP 地址只属于机器人配置。
@@ -24,7 +24,7 @@ ros2 run group_control dual_robot_demo --action squat --dry-run
 单机器人：
 
 ```bash
-ros2 run group_control dual_robot_demo --robot Robot_01 --action squat_low --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_A --action squat_low --dry-run
 ```
 
 不同动作：
@@ -55,10 +55,10 @@ ros2 run group_control dual_robot_demo --sequence --dry-run
 新表演动作 dry-run：
 
 ```bash
-ros2 run group_control dual_robot_demo --robot Robot_01 --action sway --dry-run
-ros2 run group_control dual_robot_demo --robot Robot_01 --action pitch --dry-run
-ros2 run group_control dual_robot_demo --robot Robot_01 --action leg_lift --dry-run
-ros2 run group_control dual_robot_demo --robot Robot_01 --action rotate --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_A --action sway --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_A --action pitch --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_A --action leg_lift --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_A --action rotate --dry-run
 ```
 
 注意：`sway`、`pitch`、`leg_lift`、`rotate` 当前只完成 dry-run 接入，不能写成真实机器人已验证。
@@ -69,7 +69,7 @@ ros2 run group_control dual_robot_demo --robot Robot_01 --action rotate --dry-ru
 
 ```cpp
 group.execute(
-    robots = {"Robot_01", "Robot_02"},
+    robots = {"Robot_A", "Robot_B"},
     action = "squat");
 ```
 
@@ -77,8 +77,8 @@ group.execute(
 
 ```cpp
 sequence = {
-    {"Robot_01", "wave", 0.00},
-    {"Robot_02", "wave", 0.25},
+    {"Robot_A", "wave", 0.00},
+    {"Robot_B", "wave", 0.25},
 };
 ```
 

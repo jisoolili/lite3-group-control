@@ -47,7 +47,7 @@ ActionManager
 RobotManager
       |
       v
-Robot_01 ... Robot_10
+Robot_A / Robot_B
       |
       v
 Transport
@@ -56,7 +56,7 @@ Transport
 Lite3
 ```
 
-Robot ID 使用 `Robot_01`、`Robot_02`、`Robot_10` 这类逻辑名称。Robot ID 映射到机器人配置，机器人配置再映射到 IP 和端口。控制逻辑不应该依赖某个固定 IP。
+当前实际验证范围只包含 `Robot_A`、`Robot_B` 两台 Lite3。Robot ID 映射到机器人配置，机器人配置再映射到 IP 和端口。控制逻辑不应该依赖某个固定 IP；3 到 10 台机器人只作为后续架构扩展规划。
 
 ## 仓库结构
 
@@ -91,7 +91,7 @@ source install/setup.bash
 
 ```bash
 ros2 run group_control dual_robot_demo --dry-run
-ros2 run group_control dual_robot_demo --robot Robot_01 --action squat_low --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_A --action squat_low --dry-run
 ros2 run group_control dual_robot_demo --robot-a-action squat_low --robot-b-action squat_high --dry-run
 ros2 run group_control dual_robot_demo --robot-a-action squat_low --robot-b-action squat_low --delay 0.25 --dry-run
 ros2 run group_control dual_robot_demo --sequence --dry-run
@@ -115,6 +115,7 @@ ros2 run group_control dual_robot_demo --sequence --dry-run
 - [环境配置](docs/setup.md)
 - [机器人网络](docs/robot-network.md)
 - [单机器人动作](docs/single-robot-actions.md)
+- [单机连接与动作验证](docs/single-robot-validation.md)
 - [双机器人控制](docs/dual-robot-control.md)
 - [Wave 声浪演示](docs/wave-demo.md)
 - [扩展到 10 台机器人](docs/scaling-to-10-robots.md)

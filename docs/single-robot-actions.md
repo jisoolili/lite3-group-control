@@ -17,16 +17,16 @@
 - `leg-lift`
 - `rotate`
 
-Robot A 已经验证过：
+Robot A 已经真实验证过：
 
 - `stand`
 - `squat-1-3`
 - `squat-2-3`
 - `squat-full`
+- `fast-squat`
 
 Dry-run 已验证：
 
-- `fast-squat`
 - `sway`
 - `pitch`
 - `leg-lift`

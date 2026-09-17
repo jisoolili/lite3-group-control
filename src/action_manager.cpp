@@ -23,10 +23,17 @@ bool Lite3StandDemoDryRunAction::execute(Robot& robot) {
   last_dry_run_command_ =
       "ros2 run transfer lite3_stand_demo --dry-run --action " + lite3_action_;
   std::cout << "[DRY RUN]\n"
+            << "[" << robot.robotId() << "] action=" << name_
+            << " target=" << robot.ip() << ":" << robot.targetPort() << "\n"
             << "robot=" << robot.robotId() << "\n"
             << "ip=" << robot.ip() << "\n"
             << "target_port=" << robot.targetPort() << "\n"
             << "local_state_port=" << robot.localStatePort() << "\n"
+            << "transport=" << robot.transport() << "\n"
+            << "network=" << robot.network() << "\n"
+            << "action_interface=" << robot.actionInterface() << "\n"
+            << "action_verified="
+            << (robot.actionVerified() ? "true" : "false") << "\n"
             << "action=" << name_ << "\n"
             << "lite3_action=" << lite3_action_ << "\n"
             << "command=" << last_dry_run_command_ << "\n"

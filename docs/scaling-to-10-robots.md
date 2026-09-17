@@ -28,8 +28,8 @@
 使用稳定逻辑 ID：
 
 ```text
-Robot_01
-Robot_02
+Robot_A
+Robot_B
 Robot_03
 Robot_04
 Robot_05
@@ -54,9 +54,9 @@ Robot_10
 
 ## 扩展步骤
 
-1. 验证 `Robot_01` 单机器人动作。
-2. 验证 `Robot_02` 单机器人动作。
-3. 验证 `Robot_01 + Robot_02` dry-run 时间线。
+1. 验证 `Robot_A` 单机器人动作。
+2. 验证 `Robot_B` 单机器人动作。
+3. 验证 `Robot_A + Robot_B` dry-run 时间线。
 4. 在同一组控 API 后接入真实 Transport。
 5. 验证双机器人真实同步动作。
 6. 以配置方式加入 `Robot_03` 到 `Robot_05`。
