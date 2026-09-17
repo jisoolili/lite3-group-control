@@ -52,6 +52,17 @@ ros2 run group_control dual_robot_demo \
 ros2 run group_control dual_robot_demo --sequence --dry-run
 ```
 
+新表演动作 dry-run：
+
+```bash
+ros2 run group_control dual_robot_demo --robot Robot_01 --action sway --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_01 --action pitch --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_01 --action leg_lift --dry-run
+ros2 run group_control dual_robot_demo --robot Robot_01 --action rotate --dry-run
+```
+
+注意：`sway`、`pitch`、`leg_lift`、`rotate` 当前只完成 dry-run 接入，不能写成真实机器人已验证。
+
 ## API 方向
 
 未来高层控制接口应接近：

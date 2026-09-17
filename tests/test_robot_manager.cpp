@@ -61,6 +61,10 @@ int main() {
   Check(action_manager.hasAction("squat_high"), "ActionManager squat_high registered");
   Check(action_manager.hasAction("fast_squat"),
         "ActionManager fast_squat registered");
+  Check(action_manager.hasAction("sway"), "ActionManager sway registered");
+  Check(action_manager.hasAction("pitch"), "ActionManager pitch registered");
+  Check(action_manager.hasAction("leg_lift"), "ActionManager leg_lift registered");
+  Check(action_manager.hasAction("rotate"), "ActionManager rotate registered");
   Check(action_manager.execute(robot_manager, "Robot_01", "squat"),
         "Squat Action dry-run interface");
   Check(found_a != nullptr &&

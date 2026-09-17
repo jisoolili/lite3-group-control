@@ -12,6 +12,10 @@
 - `squat-full`
 - `squat-sequence`
 - `fast-squat`
+- `sway`
+- `pitch`
+- `leg-lift`
+- `rotate`
 
 Robot A 已经验证过：
 
@@ -23,6 +27,10 @@ Robot A 已经验证过：
 Dry-run 已验证：
 
 - `fast-squat`
+- `sway`
+- `pitch`
+- `leg-lift`
+- `rotate`
 
 ## 当前参数
 
@@ -152,4 +160,118 @@ RobotState timeout: no
 Exit code: 0
 send_interval_ms min=0.112388 avg=1.00013 max=2.11284
 max_abs_joint_error=0.133695
+```
+
+## 表演动作 Dry-Run
+
+以下动作已接入 CLI 与 ActionManager，但当前仅允许 dry-run。真实机器人执行会被 `lite3_stand_demo` 明确阻止，直到完成单机安全验证。
+
+### sway
+
+作用：小幅左右身体摆动。
+
+接口：
+
+```text
+sway -> transfer/lite3_stand_demo --action sway
+```
+
+参数：
+
+```text
+cycles = 2
+hip_offset = 3 deg
+transition = 0.7 s
+hold = 0.35 s
+end = STAND
+```
+
+验证状态：
+
+```text
+Dry-run: PASS
+Real robot validation: not run
+```
+
+### pitch
+
+作用：小幅前后俯仰。
+
+接口：
+
+```text
+pitch -> transfer/lite3_stand_demo --action pitch
+```
+
+参数：
+
+```text
+thigh_offset = 4 deg
+knee_offset = 6 deg
+transition = 0.7 s
+hold = 0.35 s
+end = STAND
+```
+
+验证状态：
+
+```text
+Dry-run: PASS
+Real robot validation: not run
+```
+
+### leg-lift
+
+作用：单腿低幅度抬腿预览，当前默认只抬 LF。
+
+接口：
+
+```text
+leg_lift -> transfer/lite3_stand_demo --action leg-lift
+```
+
+参数：
+
+```text
+leg = LF
+thigh = -54 deg
+knee = 110 deg
+transition = 0.7 s
+hold = 0.35 s
+end = STAND
+```
+
+验证状态：
+
+```text
+Dry-run: PASS
+Real robot validation: not run
+```
+
+### rotate
+
+作用：原地旋转/转向的姿态预览。
+
+当前限制：仅 dry-run。完整原地旋转需要更明确的底层转向接口或专门安全验证，当前不开放真实机器人执行。
+
+接口：
+
+```text
+rotate -> transfer/lite3_stand_demo --action rotate
+```
+
+参数：
+
+```text
+hip_offset = 3 deg
+transition = 0.7 s
+hold = 0.35 s
+end = STAND
+```
+
+验证状态：
+
+```text
+Dry-run: PASS
+Real robot validation: not run
 ```

@@ -93,6 +93,14 @@ ActionManager ActionManager::createDefaultDryRunManager() {
       std::make_unique<Lite3StandDemoDryRunAction>("squat_high", "squat-full"));
   manager.registerAction(
       std::make_unique<Lite3StandDemoDryRunAction>("fast_squat", "fast-squat"));
+  manager.registerAction(
+      std::make_unique<Lite3StandDemoDryRunAction>("sway", "sway"));
+  manager.registerAction(
+      std::make_unique<Lite3StandDemoDryRunAction>("pitch", "pitch"));
+  manager.registerAction(
+      std::make_unique<Lite3StandDemoDryRunAction>("leg_lift", "leg-lift"));
+  manager.registerAction(
+      std::make_unique<Lite3StandDemoDryRunAction>("rotate", "rotate"));
   return manager;
 }
 
