@@ -11,6 +11,7 @@
 - `squat-2-3`
 - `squat-full`
 - `squat-sequence`
+- `fast-squat`
 
 Robot A 已经验证过：
 
@@ -18,6 +19,10 @@ Robot A 已经验证过：
 - `squat-1-3`
 - `squat-2-3`
 - `squat-full`
+
+Dry-run 已验证：
+
+- `fast-squat`
 
 ## 当前参数
 
@@ -83,9 +88,68 @@ ros2 run transfer lite3_stand_demo \
 ## 规划动作
 
 - `Height`
-- `FastSquat`
 - `Sway`
 - `Pitch`
 - `LegLift`
 - `Rotate`
 - `Wave`
+
+## FastSquat
+
+`fast-squat` 是当前新增的单机器人标准动作，作为后续 Wave 声浪动作的基础单元之一。
+
+动作顺序：
+
+```text
+STAND_HOLD -> SQUAT_FULL -> STAND
+```
+
+参数：
+
+```text
+下蹲过渡时间 = 0.8 s
+最低位保持 = 0.4 s
+回正过渡时间 = 0.8 s
+回正保持 = 1.0 s
+```
+
+动作角度复用已验证参数：
+
+```text
+STAND:
+hip = 0 deg
+thigh = -42 deg
+knee = 78 deg
+
+SQUAT_FULL:
+hip = 0 deg
+thigh = -70 deg
+knee = 150 deg
+```
+
+群控接口名称：
+
+```text
+fast_squat -> transfer/lite3_stand_demo --action fast-squat
+```
+
+当前状态：
+
+```text
+Implemented: yes
+Dry-run: PASS
+Real robot validation: PASS
+```
+
+真实验证结果：
+
+```text
+Robot: Robot A
+Network: wired
+Command: lite3_stand_demo --real-run-confirm --action fast-squat --robot-ip 192.168.1.120 --robot-port 43893
+Result: PASS
+RobotState timeout: no
+Exit code: 0
+send_interval_ms min=0.112388 avg=1.00013 max=2.11284
+max_abs_joint_error=0.133695
+```

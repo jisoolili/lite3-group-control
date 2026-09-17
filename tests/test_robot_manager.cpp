@@ -59,6 +59,8 @@ int main() {
   Check(action_manager.hasAction("squat_low"), "ActionManager squat_low registered");
   Check(action_manager.hasAction("squat_mid"), "ActionManager squat_mid registered");
   Check(action_manager.hasAction("squat_high"), "ActionManager squat_high registered");
+  Check(action_manager.hasAction("fast_squat"),
+        "ActionManager fast_squat registered");
   Check(action_manager.execute(robot_manager, "Robot_01", "squat"),
         "Squat Action dry-run interface");
   Check(found_a != nullptr &&

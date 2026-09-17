@@ -18,6 +18,7 @@ DeepRobotics Lite3 多机器人群控与演出动作控制系统。
 
 - Robot A 有线 RobotState 链路基准。
 - 配套 `transfer` 包中的单机器人 `stand`、`squat-1-3`、`squat-2-3`、`squat-full` dry-run。
+- 配套 `transfer` 包中的单机器人 `fast-squat` dry-run 与 Robot A 有线真实验证。
 - 当前 `group_control` 包仅完成 dry-run 级别验证。
 
 规划中：

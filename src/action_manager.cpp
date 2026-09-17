@@ -91,6 +91,8 @@ ActionManager ActionManager::createDefaultDryRunManager() {
       std::make_unique<Lite3StandDemoDryRunAction>("squat_mid", "squat-2-3"));
   manager.registerAction(
       std::make_unique<Lite3StandDemoDryRunAction>("squat_high", "squat-full"));
+  manager.registerAction(
+      std::make_unique<Lite3StandDemoDryRunAction>("fast_squat", "fast-squat"));
   return manager;
 }
 

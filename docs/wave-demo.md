@@ -8,6 +8,14 @@
 H2 -> H0 -> H4 -> H2
 ```
 
+当前 `fast-squat` 已先实现并完成 dry-run 与 Robot A 有线真实验证，动作顺序为：
+
+```text
+STAND_HOLD -> SQUAT_FULL -> STAND
+```
+
+它可作为后续 Wave 动作中 H2 -> H0 -> H2 子段的基础验证动作。完整 H2 -> H0 -> H4 -> H2 仍属于规划中。
+
 多机器人编舞应支持参数化：
 
 ```text
